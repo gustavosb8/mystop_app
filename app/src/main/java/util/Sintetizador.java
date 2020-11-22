@@ -12,15 +12,14 @@ public class Sintetizador implements TextToSpeech.OnInitListener {
     private TextToSpeech tts;
     private static String speed="Normal";
 
-    public void falaParaTexto(){
-
-    }
-
-    public void textoParaFala(String texto, Context contexto ){
+    public Sintetizador(Context contexto){
         this.contexto = contexto;
         this.tts = new TextToSpeech(this.contexto, this);
     }
 
+    public void falaParaTexto(){
+
+    }
 
     private void setSpeed(){
         if(speed.equals("Very Slow")){
@@ -48,26 +47,38 @@ public class Sintetizador implements TextToSpeech.OnInitListener {
 
             int result = tts.setLanguage(new Locale("PT", "BR"));
 
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "This Language is not supported");
             } else {
-                speakOut("Não consegui entender");
+                Log.e("TTS", "#################  Language supported!    ###################");
             }
 
-        } else { Log.e("TTS", "Initilization Failed!");}
+            Log.e("TTS", "#################  Initialization success  ##################");
+            //this.falar("Bem vindo ao My Stop!");
+
+        } else {
+            Log.e("TTS", "Initilization Failed!");
+        }
     }
 
-    private void speakOut(String texto) {
+    public void falar(String texto) {
+
+        //this.tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
+
+        this.tts.speak(texto, TextToSpeech.QUEUE_ADD, null, null);
 
 
-        tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null);
+        /*
+        if(!tts.isSpeaking()){
+
+        }
+        */
     }
 
-    private void destrou(){
+    private void onPause(){
         if (tts != null) {
-            tts.stop();
-            tts.shutdown();
+            //tts.stop();
+            //tts.shutdown();
         }
     }
 }

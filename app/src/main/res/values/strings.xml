@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MyStop</string>
+    <string name="blank"></string>
     <string name="instrucoes">
         Coloque sua digital sobre o leitor para verificar sua identidade
     </string>
+
+    <string name="saudacao">
+        Bem-vindo ao MinhaParada, fale ou digite o destino para onde deseja ir.
+    </string>
+    <string name="present">Click no microfone fale para onde quer ir:</string>
+    <string name="enviar">Enviar</string>
 </resources>

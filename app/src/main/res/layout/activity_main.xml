@@ -2,24 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/bntGoogle"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="349dp"
-        android:text="Google"
-        android:textSize="30sp" />
+        android:layout_height="270dp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="60sp" />
 
-    <Button
-        android:id="@+id/btnDigital"
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
         android:layout_width="match_parent"
-        android:layout_height="383dp"
-        android:text="Finger Print"
-        android:textSize="30sp"
-        android:drawableTop="@drawable/fingerprint"
-        />
+        android:layout_height="172dp"
+        android:layout_marginBottom="84dp"
+        android:ems="10"
+        android:hint="@string/present"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textSize="36sp">
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mic"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_weight="1"
+        android:contentDescription="Mic"
+        app:srcCompat="@drawable/ic_mic_black_off" />
+
+
+    <!--Button
+        android:id="@+id/btnEnviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:onClick="enviar"
+        android:text="@string/enviar"
+        android:textSize="24sp" /-->
+
+
 </LinearLayout>

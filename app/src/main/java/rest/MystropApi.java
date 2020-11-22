@@ -15,10 +15,10 @@ public interface MystropApi {
     Call<List<Estacao>> getEstacoesByPlace(@Query("lugar") String lugar, @Query("latitude") double latitude, @Query("longitude") double longitude);
 
     @GET("linhas?operacao=busca")
-    Call<Linha> getLinha(@Query("id") String id);
+    Call<Linha> getLinhaPorId(@Query("id") String id);
 
     @GET("linhas?operacao=buscaPorEstacao")
-    Call<List<Linha>> getLinhas(@Query("estacaoOrigem")Integer id1, @Query("estacaoDestino") Integer id2);
+    Call<List<Linha>> getLinhasPorEstacao(@Query("estacaoOrigem")Integer id1, @Query("estacaoDestino") Integer id2);
 
     @GET("linhas?operacao=buscaTodos")
     Call<List<Linha>> getLinhas();
