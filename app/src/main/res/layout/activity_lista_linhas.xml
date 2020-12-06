@@ -8,21 +8,61 @@
     android:padding="8dp"
     tools:context=".ListaLinhas">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="192dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:text="@string/id"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="221dp"
+                android:layout_height="match_parent"
+                android:text="@string/linha"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/a_o"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLinhas"
+            android:layout_width="match_parent"
+            android:layout_height="455dp"
+            tools:listitem="@layout/item_linha" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
             android:id="@+id/text_view_result"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000">
+            android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/mic2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/mic"
+            app:srcCompat="@drawable/ic_mic_black_off" />
 
-        </TextView>
-
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

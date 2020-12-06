@@ -10,4 +10,8 @@
     </string>
     <string name="present">Click no microfone fale para onde quer ir:</string>
     <string name="enviar">Enviar</string>
+    <string name="mic">Mic</string>
+    <string name="linha">Linha</string>
+    <string name="a_o">Ação</string>
+    <string name="id">ID</string>
 </resources>

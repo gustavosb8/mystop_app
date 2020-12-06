@@ -3,21 +3,21 @@ package com.example.mystop;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 
+import adapter.LinhaAdapter;
 import model.Estacao;
 import model.Linha;
 import rest.MystropApi;
@@ -26,7 +26,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import util.BackgroundService;
 
 
 public class ListaLinhas extends AppCompatActivity {
@@ -108,6 +107,7 @@ public class ListaLinhas extends AppCompatActivity {
 
                         List<Linha> linhas = response.body();
 
+                        /*
                         for (Linha linha : linhas) {
                             String conteudo = "";
                             conteudo += "ID: " + linha.getId() + "\n";
@@ -115,6 +115,7 @@ public class ListaLinhas extends AppCompatActivity {
 
                             textViewResult.append(conteudo);
                         }
+                         */
 
 
                     }
@@ -178,8 +179,12 @@ public class ListaLinhas extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Linha>> call, Response<List<Linha>> response) {
                 if (response.isSuccessful()) {
+
                     List<Linha> linhas = response.body();
 
+                    listarRecycler(linhas);
+
+                    /*
                     for (Linha linha : linhas) {
                         String conteudo = "";
                         conteudo += "ID: " + linha.getId() + "\n";
@@ -187,6 +192,7 @@ public class ListaLinhas extends AppCompatActivity {
 
                         textViewResult.append(conteudo);
                     }
+                     */
                 }
 
             }
@@ -197,4 +203,18 @@ public class ListaLinhas extends AppCompatActivity {
             }
         });
     }
+
+    private void listarRecycler(List<Linha> linhas){
+        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvLinhas);
+
+        // Create adapter passing in the sample user data
+        LinhaAdapter adapter = new LinhaAdapter(linhas);
+        // Attach the adapter to the recyclerview to populate items
+        rvContacts.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        rvContacts.addItemDecoration(
+                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+    }
+
 }
