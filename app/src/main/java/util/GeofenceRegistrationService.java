@@ -13,7 +13,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.mystop.MainActivity;
+import com.example.mystop.DiarioDeBordo;
 import com.example.mystop.R;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofenceStatusCodes;
@@ -43,7 +43,7 @@ public class GeofenceRegistrationService extends IntentService {
             int transaction = geofencingEvent.getGeofenceTransition();
             List<Geofence> geofences = geofencingEvent.getTriggeringGeofences();
             Geofence geofence = geofences.get(0);
-            if (transaction == Geofence.GEOFENCE_TRANSITION_ENTER && geofence.getRequestId().equals("EstacaoDestino")) {
+            if (transaction == Geofence.GEOFENCE_TRANSITION_ENTER && geofence.getRequestId().equals("MyStop Geofence")) {
                 Log.d(TAG, "You are inside");
             } else {
                 Log.d(TAG, "You are outside");
@@ -76,10 +76,10 @@ public class GeofenceRegistrationService extends IntentService {
         Log.i(TAG, "sendNotification: " + msg );
 
         // Intent to start the main Activity
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, DiarioDeBordo.class);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addParentStack(DiarioDeBordo.class);
         stackBuilder.addNextIntent(notificationIntent);
         PendingIntent notificationPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -93,6 +93,7 @@ public class GeofenceRegistrationService extends IntentService {
 
     // Create a notification
     private Notification createNotification(String msg, PendingIntent notificationPendingIntent) {
+        Log.d(TAG, "createNotification: Building notification");
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
         notificationBuilder
                 .setSmallIcon(R.mipmap.ic_launcher)
