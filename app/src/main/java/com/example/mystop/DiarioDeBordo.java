@@ -124,6 +124,21 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
         }
     }
 
+    private void stopLocationMonitor() {
+        Log.d(TAG, "stop location monitor");
+
+        try {
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    Log.d(TAG, "onLocationChanged: Stop Monitoring!");
+                }
+            });
+        } catch (SecurityException e) {
+            Log.d(TAG, e.getMessage());
+        }
+    }
+
     private void startGeofencing() {
         Log.d(TAG, "Start geofencing monitoring call");
         pendingIntent = getGeofencePendingIntent();
@@ -220,7 +235,7 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
 
         //AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(estacaoDestino.getLatitude(), estacaoDestino.getLongitude()));
 
-        AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(-2.533336, -44.246554));
+        AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(-2.5333193, -44.2465677));
     }
 
     private void notificar() {
@@ -229,10 +244,12 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
          * Habilitar notificação quando usuário entrar no raio de 100m da estação.
          * */
 
-        if (!isMonitoring){
-            startGeofencing();
-        }else{
+        if (isMonitoring){
             stopGeoFencing();
+            stopLocationMonitor();
+        }else{
+            startGeofencing();
+            startLocationMonitor();
         }
 
         Toast.makeText(this, "Desça a 100 metros da estação: " + estacaoDestino.getDescricao(), Toast.LENGTH_LONG).show();
@@ -346,9 +363,9 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         Log.d(TAG, "Google Api Client Connected");
-        isMonitoring = true;
-        startGeofencing();
-        startLocationMonitor();
+        //isMonitoring = true;
+        //startGeofencing();
+        //startLocationMonitor();
     }
 
     @Override

@@ -2,12 +2,14 @@ package util;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -22,13 +24,11 @@ import com.google.android.gms.location.GeofencingEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Manu on 11/24/2017.
- */
 
 public class GeofenceRegistrationService extends IntentService {
 
     private static final String TAG = "GeoIntentService";
+    NotificationCompat.Builder notificationBuilder;
 
     public GeofenceRegistrationService() {
         super(TAG);
@@ -86,6 +86,7 @@ public class GeofenceRegistrationService extends IntentService {
         // Creating and sending Notification
         NotificationManager notificatioMng =
                 (NotificationManager) getSystemService( Context.NOTIFICATION_SERVICE );
+        Log.d(TAG, "sendNotification: Preparing for notify");
         notificatioMng.notify(
                 0,
                 createNotification(msg, notificationPendingIntent));
@@ -94,14 +95,33 @@ public class GeofenceRegistrationService extends IntentService {
     // Create a notification
     private Notification createNotification(String msg, PendingIntent notificationPendingIntent) {
         Log.d(TAG, "createNotification: Building notification");
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
+
+        //Teste
+        NotificationManager notification_manager = (NotificationManager) this
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String chanel_id = "3000";
+            CharSequence name = "Channel Name";
+            String description = "Chanel Description";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(chanel_id, name, importance);
+            mChannel.setDescription(description);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.BLUE);
+            notification_manager.createNotificationChannel(mChannel);
+            notificationBuilder = new NotificationCompat.Builder(this, chanel_id);
+        } else {
+            notificationBuilder = new NotificationCompat.Builder(this);
+        }
+        //
+
         notificationBuilder
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setColor(Color.RED)
+                .setSmallIcon(R.drawable.logo)
                 .setContentTitle(msg)
-                .setContentText("Geofence Notification!")
+                .setContentText("Você está se aproximando da sua estação de desembarque. Solicite a parada!")
                 .setContentIntent(notificationPendingIntent)
-                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
+                .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                //.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
                 .setAutoCancel(true);
         return notificationBuilder.build();
     }
