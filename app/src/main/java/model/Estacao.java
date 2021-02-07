@@ -2,7 +2,9 @@ package model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Estacao {
+import java.io.Serializable;
+
+public class Estacao implements Serializable {
 
     @SerializedName("id")
     private Integer id;

@@ -8,7 +8,7 @@
     <string name="saudacao">
         Bem-vindo ao MinhaParada, fale ou digite o destino para onde deseja ir.
     </string>
-    <string name="present">Click no microfone fale para onde quer ir:</string>
+    <string name="present">Clique no microfone fale para onde quer ir:</string>
     <string name="enviar">Enviar</string>
     <string name="mic">Mic</string>
     <string name="linha">Linha</string>

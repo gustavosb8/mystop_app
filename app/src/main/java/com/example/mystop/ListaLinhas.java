@@ -208,7 +208,7 @@ public class ListaLinhas extends AppCompatActivity {
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvLinhas);
 
         // Create adapter passing in the sample user data
-        LinhaAdapter adapter = new LinhaAdapter(linhas);
+        LinhaAdapter adapter = new LinhaAdapter(linhas, estacaoOrigem, estacaoDestino, this);
         // Attach the adapter to the recyclerview to populate items
         rvContacts.setAdapter(adapter);
         // Set layout manager to position the items

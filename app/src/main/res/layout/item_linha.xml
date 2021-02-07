@@ -8,6 +8,7 @@
     android:layout_marginBottom="16dp"
     android:textSize="30sp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,24 +22,25 @@
             android:textSize="24sp" />
 
         <LinearLayout
+            android:id="@+id/layLinha"
             android:layout_width="230dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtLinha"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Linha"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtDetalhes"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Detalhes"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
         </LinearLayout>
 
@@ -49,8 +51,9 @@
             android:layout_weight="1"
             android:adjustViewBounds="false"
             android:background="#00FFFFFF"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ir_logo" />
+            android:padding="15dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/loupe" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
