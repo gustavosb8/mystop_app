@@ -108,6 +108,8 @@ public class GeofenceRegistrationService extends IntentService {
             mChannel.setDescription(description);
             mChannel.enableLights(true);
             mChannel.setLightColor(Color.BLUE);
+            mChannel.enableVibration(true);
+            mChannel.setVibrationPattern(new long[] { 1000, 1000, 1000, 1000, 1000 });
             notification_manager.createNotificationChannel(mChannel);
             notificationBuilder = new NotificationCompat.Builder(this, chanel_id);
         } else {

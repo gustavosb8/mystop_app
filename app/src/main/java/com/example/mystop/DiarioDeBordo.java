@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,6 +83,7 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
         getIncomingIntent();
 
         btnNotificar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 notificar();
@@ -233,11 +233,13 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
 
         AREA_LANDMARKS = new HashMap<String, LatLng>();
 
-        //AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(estacaoDestino.getLatitude(), estacaoDestino.getLongitude()));
+        AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(this.estacaoDestino.getLatitude(), this.estacaoDestino.getLongitude()));
 
-        AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(-2.5333193, -44.2465677));
+        //Notificação
+        //AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(-2.542440, -44.1683013));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void notificar() {
         //TO DO
         /*
@@ -247,12 +249,13 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
         if (isMonitoring){
             stopGeoFencing();
             stopLocationMonitor();
+            falar("Você cancelou a notificação de desembarque.");
         }else{
             startGeofencing();
             startLocationMonitor();
+            falar("Você será notificado quando se aproximar da estação de desembarque: "+this.estacaoDestino.getDescricao());
         }
 
-        Toast.makeText(this, "Desça a 100 metros da estação: " + estacaoDestino.getDescricao(), Toast.LENGTH_LONG).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
