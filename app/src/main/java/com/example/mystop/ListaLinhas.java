@@ -1,17 +1,17 @@
 package com.example.mystop;
 
+import android.content.Intent;
+import android.location.Location;
+import android.os.Bundle;
+import android.view.animation.LinearInterpolator;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.location.Location;
-import android.os.Bundle;
-import android.view.animation.LinearInterpolator;
-import android.widget.TextView;
 
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 
@@ -43,7 +43,6 @@ public class ListaLinhas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_linhas);
-        textViewResult = findViewById(R.id.text_view_result);
         constraintLayout = findViewById(R.id.layoutcl);
 
         Intent intent  = getIntent();

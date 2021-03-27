@@ -233,10 +233,11 @@ public class DiarioDeBordo extends AppCompatActivity implements TextToSpeech.OnI
 
         AREA_LANDMARKS = new HashMap<String, LatLng>();
 
-        AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(this.estacaoDestino.getLatitude(), this.estacaoDestino.getLongitude()));
+        //AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(this.estacaoDestino.getLatitude(), this.estacaoDestino.getLongitude()));
 
         //Notificação
         //AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(-2.542440, -44.1683013));
+        AREA_LANDMARKS.put(GEOFENCE_ID, new LatLng(-20.252959, -43.803442));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

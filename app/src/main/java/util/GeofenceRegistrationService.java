@@ -101,15 +101,15 @@ public class GeofenceRegistrationService extends IntentService {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String chanel_id = "3000";
-            CharSequence name = "Channel Name";
-            String description = "Chanel Description";
+            CharSequence name = "Mystop";
+            String description = "Mystop";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel(chanel_id, name, importance);
             mChannel.setDescription(description);
             mChannel.enableLights(true);
             mChannel.setLightColor(Color.BLUE);
             mChannel.enableVibration(true);
-            mChannel.setVibrationPattern(new long[] { 1000, 1000, 1000, 1000, 1000 });
+            mChannel.setVibrationPattern(new long[] { 10000, 10000, 10000, 10000, 10000 });
             notification_manager.createNotificationChannel(mChannel);
             notificationBuilder = new NotificationCompat.Builder(this, chanel_id);
         } else {
@@ -122,7 +122,7 @@ public class GeofenceRegistrationService extends IntentService {
                 .setContentTitle(msg)
                 .setContentText("Você está se aproximando da sua estação de desembarque. Solicite a parada!")
                 .setContentIntent(notificationPendingIntent)
-                .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                .setVibrate(new long[] { 10000, 10000, 10000, 10000, 10000 })
                 //.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
                 .setAutoCancel(true);
         return notificationBuilder.build();

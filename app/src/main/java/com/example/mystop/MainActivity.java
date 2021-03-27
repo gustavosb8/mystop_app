@@ -113,7 +113,10 @@ public class MainActivity extends AppCompatActivity  implements OnItemClickListe
                 (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) &&
                     (ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) &&
-                    (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                    (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) &&
+                    (ContextCompat.checkSelfPermission(this,Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED)&&
+                    (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)&&
+                    (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                                                             ) {
 
                 this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -164,7 +167,10 @@ public class MainActivity extends AppCompatActivity  implements OnItemClickListe
                         Manifest.permission.ACCESS_FINE_LOCATION)&&ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.ACCESS_COARSE_LOCATION)&&ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.RECORD_AUDIO)&&ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+                        Manifest.permission.ACCESS_BACKGROUND_LOCATION)&&ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.VIBRATE)&&ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)&&ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     // Show an explanation to the user *asynchronously* -- don't block
                     // this thread waiting for the user's response! After the user
                     // sees the explanation, try again to request the permission.
@@ -174,7 +180,10 @@ public class MainActivity extends AppCompatActivity  implements OnItemClickListe
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                                          Manifest.permission.ACCESS_COARSE_LOCATION,
                                          Manifest.permission.RECORD_AUDIO,
-                                         Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                                         Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                                         Manifest.permission.VIBRATE,
+                                         Manifest.permission.READ_EXTERNAL_STORAGE,
+                                         Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             MY_PERMISSIONS_REQUEST_LOCATION);
 
                     // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
