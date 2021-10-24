@@ -3,6 +3,7 @@ package com.example.mystop;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListaLinhas extends AppCompatActivity {
 
+    private static final String TAG = "ListaLinhas";
     private TextView textViewResult;
     private Location location;
     private ConstraintLayout constraintLayout;
@@ -147,6 +149,13 @@ public class ListaLinhas extends AppCompatActivity {
     }
 
     public void getListaEstacoes(MystropApi api, String lugar){
+
+        Log.d(TAG, "%%%%%%%%%%%%%%%%%%%%%%%%% getListaEstacoes: "+lugar);
+        Log.d(TAG, "%%%%%%%%%%%%%%%%%%%%%%%%% Latitude: "+this.location.getLatitude());
+        Log.d(TAG, "%%%%%%%%%%%%%%%%%%%%%%%%% longitude: "+this.location.getLongitude());
+        Log.d(TAG, "%%%%%%%%%%%%%%%%%%%%%%%%% api: "+api.toString());
+
+
         Call<List<Estacao>> call = api.getEstacoesByPlace(lugar,
                 this.location.getLatitude(),
                 this.location.getLongitude());
@@ -167,7 +176,8 @@ public class ListaLinhas extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Estacao>> call, Throwable t) {
-                textViewResult.append(t.getMessage());
+                Log.d(TAG, "onFailure: "+t.getMessage());
+                textViewResult.append("Code: " +t.getMessage());
             }
         });
     }
